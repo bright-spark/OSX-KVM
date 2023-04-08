@@ -9,6 +9,8 @@ instructions are included!).
 :green_heart: Looking for **commercial** support with this stuff? I am [available
 over email](mailto:dhiru.kholia@gmail.com?subject=[GitHub]%20OSX-KVM%20Commercial%20Support%20Request&body=Hi%20-%20We%20are%20interested%20in%20purchasing%20commercial%20support%20options%20for%20your%20project.) for a chat for **commercial support options only**. Note: Project sponsors get access to the `Private OSX-KVM` repository, and direct support.
 
+Struggling with `Content Caching` stuff? We can help.
+
 Working with `Proxmox` and macOS? See [Nick's blog for sure](https://www.nicksherlock.com/).
 
 Yes, we support offline macOS installations now 🎉
@@ -165,7 +167,7 @@ Phenom II X3 720 does not. Ryzen processors work just fine.
   ./OpenCore-Boot.sh
   ```
 
-  Note: This same script works for Big Sur, Catalina, Mojave, and High Sierra.
+  Note: This same script works for all recent macOS versions.
 
 - Use the `Disk Utility` tool within the macOS installer to partition, and
   format the virtual disk attached to the macOS VM.
@@ -202,6 +204,15 @@ Phenom II X3 720 does not. Ryzen processors work just fine.
   - Launch `virt-manager` and start the `macOS` virtual machine.
 
 
+### Headless macOS
+
+- Use the provided [boot-macOS-headless.sh](./boot-macOS-headless.sh) script.
+
+  ```
+  ./boot-macOS-headless.sh
+  ```
+
+
 ### Setting Expectations Right
 
 Nice job on setting up a `Virtual Hackintosh` system! Such a system can be used
@@ -220,24 +231,7 @@ work, patience, and a bit of luck (perhaps?).
 
 ### Post-Installation
 
-* See [networking notes](networking-qemu-kvm-howto.txt) to setup guest networking.
-
-  I have the following commands present in `/etc/rc.local`.
-
-  ```
-  #!/usr/bin/env bash
-
-  sudo ip tuntap add dev tap0 mode tap
-  sudo ip link set tap0 up promisc on
-  sudo ip link set dev virbr0 up
-  sudo ip link set dev tap0 master virbr0
-  ```
-
-  This has been enough for me so far.
-
-  Note: You may need to enable the `rc.local` functionality manually on modern
-  Ubuntu versions. Check out the [notes](notes.md) included in this repository
-  for details.
+* See [networking notes](networking-qemu-kvm-howto.txt) on how to setup networking in your VM, outbound and also inbound for remote access to your VM via SSH, VNC, etc.
 
 * To passthrough GPUs and other devices, see [these notes](notes.md#gpu-passthrough-notes).
 
